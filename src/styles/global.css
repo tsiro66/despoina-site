@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+@utility font-syne {
+    font-family: var(--font-syne);
+}
+
+@utility font-geom {
+    font-family: var(--font-geom);
+}
+
+@utility font-google-sans {
+    font-family: var(--font-google-sans);
+}
