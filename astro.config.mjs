@@ -17,11 +17,23 @@ export default defineConfig({
             name: "Geom",
             cssVariable: "--font-geom",
             provider: fontProviders.google(),
+            subsets: ["greek", "latin"]
         },
         {
             name: "Google Sans",
             cssVariable: "--font-google-sans",
             provider: fontProviders.google(),
+        },
+        {
+            name: "Fraunces",
+            cssVariable: "--font-fraunces",
+            provider: fontProviders.google(),
+        },
+        {
+            name: "Inter",
+            cssVariable: "--font-inter",
+            provider: fontProviders.google(),
+            subsets: ["greek", "latin"],
         },
     ],
 });
