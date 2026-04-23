@@ -7,6 +7,9 @@ const navLinks = [
   { name: "Τα έργα μας", href: "/work" },
   { name: "Επικοινωνία", href: "/contact" },
 ];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = currentPath === '/';
 ---
 
 <nav id="navbar" class="bg-forest sticky top-0 z-200 shadow-lg">
@@ -21,9 +24,17 @@ const navLinks = [
       <!-- Desktop nav -->
       <div class="hidden md:flex gap-20 items-center">
         {
-          navLinks.map((link) => (
-            <RollLink href={link.href} text={link.name} class="text-white font-medium" />
-          ))
+          navLinks.map((link) => {
+            const isActive = currentPath === link.href;
+            return (
+              <RollLink
+                href={link.href}
+                text={link.name}
+                class={`text-white font-medium text-lg transition-opacity duration-300 ${isHome || isActive ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}
+                aria-current={isActive ? 'page' : undefined}
+              />
+            );
+          })
         }
       </div>
 
@@ -54,9 +65,17 @@ const navLinks = [
 >
   <nav class="flex flex-col items-center gap-10">
     {
-      navLinks.map((link) => (
-        <RollLink href={link.href} text={link.name} class="mobile-menu-link text-white text-3xl font-medium" />
-      ))
+      navLinks.map((link) => {
+        const isActive = currentPath === link.href;
+        return (
+          <RollLink
+            href={link.href}
+            text={link.name}
+            class={`mobile-menu-link text-white text-3xl font-medium transition-opacity duration-300 ${isHome || isActive ? 'opacity-100' : 'opacity-60'}`}
+            aria-current={isActive ? 'page' : undefined}
+          />
+        );
+      })
     }
   </nav>
 </div>

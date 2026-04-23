@@ -3,12 +3,13 @@ interface Props {
   href: string;
   text: string;
   class?: string;
+  'aria-current'?: string;
 }
 
-const { href, text, class: className } = Astro.props;
+const { href, text, class: className, 'aria-current': ariaCurrent } = Astro.props;
 ---
 
-<a href={href} class:list={["roll-link", className]}>
+<a href={href} class:list={["roll-link", className]} aria-current={ariaCurrent}>
   <span class="roll-text">
     <span>{text}</span>
     <span aria-hidden="true">{text}</span>
@@ -26,6 +27,11 @@ const { href, text, class: className } = Astro.props;
     display: inline-flex;
   }
 
+  /* Hide duplicate span before JS splits into .roll-char wrappers */
+  .roll-text > span[aria-hidden] {
+    display: none;
+  }
+
   .roll-char {
     position: relative;
     overflow: hidden;
@@ -40,12 +46,12 @@ const { href, text, class: className } = Astro.props;
 
   .roll-char span:last-child {
     position: absolute;
-    top: 100%;
+    top: 140%;
     left: 0;
   }
 
   .roll-link:hover .roll-char span {
-    transform: translateY(-100%);
+    transform: translateY(-140%);
   }
 
   @media (prefers-reduced-motion: reduce) {
