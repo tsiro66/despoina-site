@@ -3,13 +3,13 @@ interface Props {
   href: string;
   text: string;
   class?: string;
-  'aria-current'?: string;
+  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false';
 }
 
 const { href, text, class: className, 'aria-current': ariaCurrent } = Astro.props;
 ---
 
-<a href={href} class:list={["roll-link", className]} aria-current={ariaCurrent}>
+<a href={href} class:list={["roll-link", className]} {...(ariaCurrent ? { 'aria-current': ariaCurrent } : {})}>
   <span class="roll-text">
     <span>{text}</span>
     <span aria-hidden="true">{text}</span>
