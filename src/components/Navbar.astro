@@ -1,5 +1,6 @@
 ---
-// Define your navigation links here for easy maintenance
+import RollLink from './RollLink.astro';
+
 const navLinks = [
   { name: "Ποιοι είμαστε", href: "/about" },
   { name: "Υπηρεσίες", href: "/services" },
@@ -9,7 +10,7 @@ const navLinks = [
 ---
 
 <nav id="navbar" class="bg-forest sticky top-0 z-200 shadow-lg">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16 items-center">
       <div class="shrink-0 flex items-center">
         <a href="/" class="text-2xl font-bold text-white font-fraunces">
@@ -21,12 +22,7 @@ const navLinks = [
       <div class="hidden md:flex gap-20 items-center">
         {
           navLinks.map((link) => (
-            <a
-              href={link.href}
-              class="text-white font-medium transition-colors duration-200"
-            >
-              {link.name}
-            </a>
+            <RollLink href={link.href} text={link.name} class="text-white font-medium" />
           ))
         }
       </div>
@@ -59,12 +55,7 @@ const navLinks = [
   <nav class="flex flex-col items-center gap-10">
     {
       navLinks.map((link) => (
-        <a
-          href={link.href}
-          class="mobile-menu-link text-white text-3xl font-medium transition-colors duration-200"
-        >
-          {link.name}
-        </a>
+        <RollLink href={link.href} text={link.name} class="mobile-menu-link text-white text-3xl font-medium" />
       ))
     }
   </nav>

@@ -1,0 +1,90 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  class?: string;
+}
+
+const { href, text, class: className } = Astro.props;
+---
+
+<a href={href} class:list={["roll-link", className]}>
+  <span class="roll-text">
+    <span>{text}</span>
+    <span aria-hidden="true">{text}</span>
+  </span>
+  <slot />
+</a>
+
+<style is:global>
+  .roll-link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .roll-text {
+    display: inline-flex;
+  }
+
+  .roll-char {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .roll-char span {
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+    transition-delay: var(--char-delay, 0ms);
+  }
+
+  .roll-char span:last-child {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  .roll-link:hover .roll-char span {
+    transform: translateY(-100%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .roll-char span {
+      transition: none;
+    }
+    .roll-link:hover .roll-char span {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  function splitRollText() {
+    document.querySelectorAll<HTMLElement>('.roll-text').forEach(el => {
+      if (el.dataset.split) return;
+      const text = el.querySelector('span')?.textContent?.trim() || '';
+      el.innerHTML = '';
+      el.dataset.split = 'true';
+
+      [...text].forEach((char, i) => {
+        const wrap = document.createElement('span');
+        wrap.className = 'roll-char';
+
+        const top = document.createElement('span');
+        top.textContent = char === ' ' ? '\u00A0' : char;
+        top.style.setProperty('--char-delay', `${i * 10}ms`);
+
+        const bot = document.createElement('span');
+        bot.textContent = char === ' ' ? '\u00A0' : char;
+        bot.setAttribute('aria-hidden', 'true');
+        bot.style.setProperty('--char-delay', `${i * 10}ms`);
+
+        wrap.appendChild(top);
+        wrap.appendChild(bot);
+        el.appendChild(wrap);
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', splitRollText);
+</script>
