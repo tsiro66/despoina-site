@@ -2,6 +2,7 @@
 import { ClientRouter } from 'astro:transitions';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import ColorPicker from '../components/ColorPicker.astro';
 import '../styles/global.css';
 import { Font } from 'astro:assets';
 
@@ -34,14 +35,15 @@ const {
 
   </head>
   <body class="bg-zinc-100 font-geom">
-    
+    <a href="#main-content" class="skip-link">Μετάβαση στο περιεχόμενο</a>
+
     <Navbar />
 
-    <main class="relative z-10 bg-zinc-100 min-h-[calc(100vh-64px)]">
+    <main id="main-content" class="relative z-10 bg-zinc-100 min-h-[calc(100vh-64px)]">
       <slot /> </main>
 
     <Footer />
-
+    <ColorPicker />
 
   </body>
 </html>

@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isHome = currentPath === '/';
 ---
 
-<nav id="navbar" class="bg-forest sticky top-0 z-200 shadow-lg">
+<nav id="navbar" aria-label="Κύρια πλοήγηση" class="bg-forest sticky top-0 z-200 shadow-lg">
   <div class="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16 items-center">
       <div class="shrink-0 flex items-center">
@@ -44,6 +44,7 @@ const isHome = currentPath === '/';
         class="md:hidden relative z-[150] flex flex-col justify-center gap-2 w-10 h-10 cursor-pointer"
         aria-label="Μενού"
         aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <span
           id="line1"
@@ -63,7 +64,7 @@ const isHome = currentPath === '/';
   id="mobile-menu"
   class="fixed inset-0 z-100 bg-forest flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out md:hidden"
 >
-  <nav class="flex flex-col items-center gap-10">
+  <nav aria-label="Μενού κινητού" class="flex flex-col items-center gap-10">
     {
       navLinks.map((link) => {
         const isActive = currentPath === link.href;
@@ -114,6 +115,14 @@ const isHome = currentPath === '/';
 
     btn?.addEventListener("click", () => {
       isOpen ? closeMenu() : openMenu();
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isOpen) {
+        closeMenu();
+        btn?.focus();
+      }
     });
 
     // Close on link click

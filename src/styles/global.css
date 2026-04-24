@@ -24,3 +24,35 @@
 @utility font-inter {
     font-family: var(--font-inter);
 }
+
+/* Focus-visible styles for keyboard navigation */
+@layer base {
+    :focus-visible {
+        outline: 2px solid var(--color-forest);
+        outline-offset: 2px;
+    }
+
+    /* Invert outline on dark backgrounds */
+    .bg-forest :focus-visible,
+    [class*="bg-forest"] :focus-visible {
+        outline-color: white;
+    }
+
+    /* Skip-to-content link */
+    .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        padding: 0.75rem 1.5rem;
+        background: var(--color-forest);
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+    .skip-link:focus {
+        top: 0.5rem;
+    }
+}
