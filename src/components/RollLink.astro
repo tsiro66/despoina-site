@@ -24,73 +24,33 @@ const { href, text, class: className, 'aria-current': ariaCurrent } = Astro.prop
   }
 
   .roll-text {
-    display: inline-flex;
-  }
-
-  /* Hide duplicate span before JS splits into .roll-char wrappers */
-  .roll-text > span[aria-hidden] {
-    display: none;
-  }
-
-  .roll-char {
     position: relative;
     overflow: hidden;
     display: inline-block;
   }
 
-  .roll-char span {
+  .roll-text span {
     display: block;
     transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
-    transition-delay: var(--char-delay, 0ms);
   }
 
-  .roll-char span:last-child {
+  .roll-text span:last-child {
     position: absolute;
     top: 140%;
     left: 0;
   }
 
-  .roll-link:hover .roll-char span {
+  .roll-link:hover .roll-text span {
     transform: translateY(-140%);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .roll-char span {
+    .roll-text span {
       transition: none;
     }
-    .roll-link:hover .roll-char span {
+    .roll-link:hover .roll-text span {
       transform: none;
     }
   }
 </style>
 
-<script>
-  function splitRollText() {
-    document.querySelectorAll<HTMLElement>('.roll-text').forEach(el => {
-      if (el.dataset.split) return;
-      const text = el.querySelector('span')?.textContent?.trim() || '';
-      el.innerHTML = '';
-      el.dataset.split = 'true';
-
-      [...text].forEach((char, i) => {
-        const wrap = document.createElement('span');
-        wrap.className = 'roll-char';
-
-        const top = document.createElement('span');
-        top.textContent = char === ' ' ? '\u00A0' : char;
-        top.style.setProperty('--char-delay', `${i * 10}ms`);
-
-        const bot = document.createElement('span');
-        bot.textContent = char === ' ' ? '\u00A0' : char;
-        bot.setAttribute('aria-hidden', 'true');
-        bot.style.setProperty('--char-delay', `${i * 10}ms`);
-
-        wrap.appendChild(top);
-        wrap.appendChild(bot);
-        el.appendChild(wrap);
-      });
-    });
-  }
-
-  document.addEventListener('astro:page-load', splitRollText);
-</script>
