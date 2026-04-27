@@ -84,7 +84,13 @@
 
 /* Corner-extend lines radiating outward from button corners */
 .corner-extend {
+    --corner-color: var(--color-forest);
     position: relative;
+}
+
+.bg-forest .corner-extend {
+    --corner-color: white;
+    opacity: 60%;
 }
 
 .corner-extend::before {
@@ -94,19 +100,19 @@
     pointer-events: none;
     background-image:
         /* corner lines — 40% opacity */
-        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
-        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
-        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
-        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
-        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
-        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
-        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
-        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--corner-color) 40%, transparent), color-mix(in srgb, var(--corner-color) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--corner-color) 40%, transparent), color-mix(in srgb, var(--corner-color) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--corner-color) 40%, transparent), color-mix(in srgb, var(--corner-color) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--corner-color) 40%, transparent), color-mix(in srgb, var(--corner-color) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--corner-color) 40%, transparent), color-mix(in srgb, var(--corner-color) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--corner-color) 40%, transparent), color-mix(in srgb, var(--corner-color) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--corner-color) 40%, transparent), color-mix(in srgb, var(--corner-color) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--corner-color) 40%, transparent), color-mix(in srgb, var(--corner-color) 40%, transparent)),
         /* corner dots — full opacity */
-        radial-gradient(circle, var(--color-forest) 50%, transparent 51%),
-        radial-gradient(circle, var(--color-forest) 50%, transparent 51%),
-        radial-gradient(circle, var(--color-forest) 50%, transparent 51%),
-        radial-gradient(circle, var(--color-forest) 50%, transparent 51%);
+        radial-gradient(circle, var(--corner-color) 50%, transparent 51%),
+        radial-gradient(circle, var(--corner-color) 50%, transparent 51%),
+        radial-gradient(circle, var(--corner-color) 50%, transparent 51%),
+        radial-gradient(circle, var(--corner-color) 50%, transparent 51%);
     background-repeat: no-repeat;
     background-size:
         /* lines */
