@@ -9,20 +9,20 @@
 
     <!-- Preset swatches -->
     <div class="grid grid-cols-5 gap-2 mb-4">
-      <button data-color="#0B2F1F" class="color-swatch w-9 h-9 rounded-full border-2 border-transparent hover:scale-110 transition-transform" style="background:#0B2F1F" aria-label="Forest (default)"></button>
+      <button data-color="#333D1E" class="color-swatch w-9 h-9 rounded-full border-2 border-transparent hover:scale-110 transition-transform" style="background:#333D1E" aria-label="Forest (default)"></button>
       <button data-color="#869476" class="color-swatch w-9 h-9 rounded-full border-2 border-transparent hover:scale-110 transition-transform" style="background:#869476" aria-label="Khaki"></button>
       <button data-color="#001F3F" class="color-swatch w-9 h-9 rounded-full border-2 border-transparent hover:scale-110 transition-transform" style="background:#001F3F" aria-label="Navy Blue"></button>
-      <button data-color="#333D1E" class="color-swatch w-9 h-9 rounded-full border-2 border-transparent hover:scale-110 transition-transform" style="background:#333D1E" aria-label="Army Green"></button>
+      <button data-color="#0B2F1F" class="color-swatch w-9 h-9 rounded-full border-2 border-transparent hover:scale-110 transition-transform" style="background:#0B2F1F" aria-label="Deep Forest"></button>
       <button data-color="#1C1C1C" class="color-swatch w-9 h-9 rounded-full border-2 border-transparent hover:scale-110 transition-transform" style="background:#1C1C1C" aria-label="Anthracite"></button>
     </div>
 
     <!-- Custom color input -->
     <div class="flex items-center gap-2">
       <label for="custom-color" class="text-xs text-zinc-500 font-google-sans whitespace-nowrap">Custom:</label>
-      <input type="color" id="custom-color" value="#0B2F1F" class="w-10 h-8 rounded cursor-pointer border-0 p-0 bg-transparent" />
+      <input type="color" id="custom-color" value="#333D1E" class="w-10 h-8 rounded cursor-pointer border-0 p-0 bg-transparent" />
       <div class="flex items-center bg-zinc-100 rounded px-2 py-1">
         <span class="text-xs text-zinc-400 font-google-sans" aria-hidden="true">#</span>
-        <input type="text" id="hex-input" value="0B2F1F" maxlength="6" aria-label="Hex χρώμα" class="w-16 text-xs text-zinc-700 font-google-sans tracking-wide bg-transparent border-0 outline-none p-0 pl-0.5" placeholder="0B2F1F" />
+        <input type="text" id="hex-input" value="333D1E" maxlength="6" aria-label="Hex χρώμα" class="w-16 text-xs text-zinc-700 font-google-sans tracking-wide bg-transparent border-0 outline-none p-0 pl-0.5" placeholder="333D1E" />
       </div>
     </div>
 
@@ -60,7 +60,7 @@
 
 <script>
   function initColorPicker() {
-    const DEFAULT_COLOR = '#0B2F1F';
+    const DEFAULT_COLOR = '#333D1E';
     const toggle = document.getElementById('color-toggle')!;
     const panel = document.getElementById('color-panel')!;
     const customInput = document.getElementById('custom-color') as HTMLInputElement;

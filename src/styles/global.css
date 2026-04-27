@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-    --color-forest: #0B2F1F;
-    
+    --color-forest: #333D1E;
+    --nav-logo-w: 5rem;
 }
 
 @utility font-syne {
@@ -23,6 +23,132 @@
 
 @utility font-inter {
     font-family: var(--font-inter);
+}
+
+/* Vertical sidebar line — desktop only */
+@media (min-width: 1024px) {
+    /* Cover strip hides footer peeking behind nav logo column */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: var(--nav-logo-w);
+        background-color: var(--color-forest);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    #main-content {
+        margin-left: var(--nav-logo-w);
+    }
+
+    #main-content::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -1px;
+        width: 1px;
+        background-color: var(--color-forest);
+        opacity: 0.4;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* Zinc strip scrolls with main — covers forest strip while main visible */
+    #main-content::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: calc(-1 * var(--nav-logo-w));
+        width: var(--nav-logo-w);
+        background-color: var(--color-zinc-50, #fafafa);
+        pointer-events: none;
+    }
+
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: calc(var(--nav-logo-w) - 1px);
+        width: 1px;
+        background-color: white;
+        opacity: 0.1;
+        pointer-events: none;
+    }
+}
+
+/* Corner-extend lines radiating outward from button corners */
+.corner-extend {
+    position: relative;
+}
+
+.corner-extend::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    pointer-events: none;
+    background-image:
+        /* corner lines — 40% opacity */
+        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        linear-gradient(color-mix(in srgb, var(--color-forest) 40%, transparent), color-mix(in srgb, var(--color-forest) 40%, transparent)),
+        /* corner dots — full opacity */
+        radial-gradient(circle, var(--color-forest) 50%, transparent 51%),
+        radial-gradient(circle, var(--color-forest) 50%, transparent 51%),
+        radial-gradient(circle, var(--color-forest) 50%, transparent 51%),
+        radial-gradient(circle, var(--color-forest) 50%, transparent 51%);
+    background-repeat: no-repeat;
+    background-size:
+        /* lines */
+        7px 1px, 1px 7px,
+        7px 1px, 1px 7px,
+        7px 1px, 1px 7px,
+        7px 1px, 1px 7px,
+        /* dots */
+        5px 5px, 5px 5px, 5px 5px, 5px 5px;
+    background-position:
+        /* lines */
+        left 0px top 7px,    left 7px top 0px,
+        right 0px top 7px,   right 7px top 0px,
+        left 0px bottom 7px, left 7px bottom 0px,
+        right 0px bottom 7px, right 7px bottom 0px,
+        /* dots — centered at line junction points */
+        left 5px top 5px,
+        right 5px top 5px,
+        left 5px bottom 5px,
+        right 5px bottom 5px;
+}
+
+/* Active nav link — dots at top-left and bottom-left border corners */
+.nav-active {
+    position: relative;
+    overflow: visible !important;
+}
+
+.nav-active::after {
+    content: '';
+    position: absolute;
+    left: -3.5px;
+    right: -3.5px;
+    bottom: -3.5px;
+    height: 7px;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle, var(--color-forest) 50%, transparent 51%),
+        radial-gradient(circle, var(--color-forest) 50%, transparent 51%);
+    background-repeat: no-repeat;
+    background-size: 7px 7px, 7px 7px;
+    background-position: left 0px bottom 0px, right 0px bottom 0px;
 }
 
 /* Focus-visible styles for keyboard navigation */

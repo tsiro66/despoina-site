@@ -2,7 +2,7 @@
 import RollLink from "./RollLink.astro";
 ---
 
-<section class="px-4 sm:px-8 md:px-16 lg:px-20 py-16 sm:py-24">
+<section class="px-4 sm:px-8 md:px-16 lg:pl-8 lg:pr-20 py-16 sm:py-24">
   <!-- Header — asymmetric like other pages -->
   <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-12 sm:mb-16">
     <div class="contact-card lg:col-span-2 flex flex-col justify-center">
@@ -34,7 +34,7 @@ import RollLink from "./RollLink.astro";
   <!-- Contact grid -->
   <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
     <!-- Contact form — wider -->
-    <div class="contact-card lg:col-span-3 bg-white shadow-sm">
+    <div class="contact-card lg:col-span-3 bg-zinc-50 border border-forest/40">
       <div class="p-5 sm:p-6 lg:p-8 h-full">
         <h2 class="text-lg sm:text-xl font-bold text-black mb-6">
           Στείλτε μας μήνυμα
@@ -125,7 +125,7 @@ import RollLink from "./RollLink.astro";
 
           <RollLink
             href="#"
-            class="group/link gap-2 bg-forest text-white font-medium text-base sm:text-lg px-8 py-3.5 mb-2 max-w-11/20 xl:max-w-3/10"
+            class="corner-extend group/link gap-2 border border-forest/40 text-forest font-medium text-base sm:text-lg px-8 py-3.5 mb-2 max-w-11/20 xl:max-w-3/10"
             text="Αποστολή"
           >
             <svg
@@ -146,7 +146,7 @@ import RollLink from "./RollLink.astro";
     <!-- Info cards — narrower column -->
     <div class="lg:col-span-2 flex flex-col gap-6">
       <!-- Team contact details -->
-      <div class="contact-card bg-white shadow-sm">
+      <div class="contact-card bg-zinc-50 border border-forest/40">
         <div class="p-5 sm:p-6 lg:p-8">
           <h2 class="text-lg sm:text-xl font-bold text-black mb-5">
             Στοιχεία επικοινωνίας

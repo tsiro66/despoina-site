@@ -12,57 +12,60 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isHome = currentPath === '/';
 ---
 
-<nav id="navbar" aria-label="Κύρια πλοήγηση" class="bg-forest sticky top-0 z-200 shadow-lg">
-  <div class="max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between h-16 items-center">
-      <div class="shrink-0 flex items-center">
-        <a href="/" class="text-2xl font-bold text-white font-fraunces">
-          A37
-        </a>
-      </div>
-
-      <!-- Desktop nav -->
-      <div class="hidden md:flex gap-20 items-center">
-        {
-          navLinks.map((link) => {
-            const isActive = currentPath === link.href;
-            return (
-              <RollLink
-                href={link.href}
-                text={link.name}
-                class={`text-white font-medium text-lg transition-opacity duration-300 ${isHome || isActive ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}
-                aria-current={isActive ? 'page' : undefined}
-              />
-            );
-          })
-        }
-      </div>
-
-      <!-- Mobile hamburger (2 lines → X) -->
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden relative z-[150] flex flex-col justify-center gap-2 w-10 h-10 cursor-pointer"
-        aria-label="Μενού"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span
-          id="line1"
-          class="block w-full h-[1px] bg-white transition-all duration-300 origin-center"
-        ></span>
-        <span
-          id="line2"
-          class="block w-full h-[1px] bg-white transition-all duration-300 origin-center"
-        ></span>
-      </button>
+<nav id="navbar" aria-label="Κύρια πλοήγηση" class="bg-zinc-50 border-y border-forest/40 sticky top-0 z-200 overflow-visible">
+  <div class="flex h-16 items-center overflow-visible">
+    <!-- Logo cell -->
+    <div class="shrink-0 flex items-center px-6 lg:w-[var(--nav-logo-w)] lg:px-0 lg:justify-center border-r border-forest/40 self-stretch relative">
+      <a href="/" class="text-2xl font-bold text-forest font-fraunces">
+        A37
+      </a>
+      <span class="absolute -bottom-[2.5px] -right-[3.5px] md:-right-[2.5px] w-[5px] h-[5px] rounded-full bg-forest" aria-hidden="true"></span>
     </div>
+
+    <!-- Spacer -->
+    <div class="flex-1"></div>
+
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-stretch self-stretch overflow-visible">
+      {
+        navLinks.map((link) => {
+          const isActive = currentPath === link.href;
+          return (
+            <RollLink
+              href={link.href}
+              text={link.name}
+              class={`text-forest font-medium text-lg border-l border-forest/40 px-6 flex items-center transition-opacity duration-300 ${isActive ? 'opacity-100 nav-active' : isHome ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}
+              aria-current={isActive ? 'page' : undefined}
+            />
+          );
+        })
+      }
+    </div>
+
+    <!-- Mobile hamburger (2 lines → X) -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden relative z-[150] flex flex-col justify-center gap-2 w-10 h-10 cursor-pointer mx-4"
+      aria-label="Μενού"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <span
+        id="line1"
+        class="block w-full h-[1px] bg-forest transition-all duration-300 origin-center"
+      ></span>
+      <span
+        id="line2"
+        class="block w-full h-[1px] bg-forest transition-all duration-300 origin-center"
+      ></span>
+    </button>
   </div>
 </nav>
 
 <!-- Fullscreen mobile menu overlay -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 z-100 bg-forest flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out md:hidden"
+  class="fixed inset-0 z-100 bg-zinc-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out md:hidden border-b border-forest/40"
 >
   <nav aria-label="Μενού κινητού" class="flex flex-col items-center gap-10">
     {
@@ -72,7 +75,7 @@ const isHome = currentPath === '/';
           <RollLink
             href={link.href}
             text={link.name}
-            class={`mobile-menu-link text-white text-3xl font-medium transition-opacity duration-300 ${isHome || isActive ? 'opacity-100' : 'opacity-60'}`}
+            class={`mobile-menu-link text-forest text-3xl font-medium transition-opacity duration-300 ${isHome || isActive ? 'opacity-100' : 'opacity-60 hover:opacity-100'}`}
             aria-current={isActive ? 'page' : undefined}
           />
         );
@@ -91,7 +94,6 @@ const isHome = currentPath === '/';
     let isOpen = false;
 
     function openMenu() {
-      navbar?.classList.remove("shadow-lg");
       menu?.classList.remove("opacity-0", "pointer-events-none");
       menu?.classList.add("opacity-100", "pointer-events-auto");
       // Lines → X
