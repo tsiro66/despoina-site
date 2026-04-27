@@ -2,7 +2,7 @@
 
 @theme {
     --color-forest: #333D1E;
-    --nav-logo-w: 5rem;
+    --nav-logo-w: 7rem;
 }
 
 @utility font-syne {
@@ -17,8 +17,8 @@
     font-family: var(--font-google-sans);
 }
 
-@utility font-fraunces {
-    font-family: var(--font-fraunces);
+@utility font-sansation {
+    font-family: var(--font-sansation);
 }
 
 @utility font-inter {

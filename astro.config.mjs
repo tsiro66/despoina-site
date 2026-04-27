@@ -25,8 +25,8 @@ export default defineConfig({
             provider: fontProviders.google(),
         },
         {
-            name: "Fraunces",
-            cssVariable: "--font-fraunces",
+            name: "Sansation",
+            cssVariable: "--font-sansation",
             provider: fontProviders.google(),
         },
         {
