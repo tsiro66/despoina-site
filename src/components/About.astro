@@ -58,7 +58,7 @@ const team = [
   <!-- Team grid — asymmetric like hero cards -->
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
     {team.map((member) => (
-      <div class={`about-card bg-zinc-50 border border-forest/40 ${member.span}`}>
+      <div class={`about-card bg-zinc-50 border border-forest/40 corner-extend ${member.span}`}>
         <div class="p-5 sm:p-6 lg:p-8">
           <div class={`w-11 h-11 ${member.color} mb-4`}></div>
           <h3 class="text-lg sm:text-xl font-bold text-black">{member.name}</h3>
