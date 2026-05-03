@@ -1,8 +1,11 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import Work from "../components/Work.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
 ---
 
 <MainLayout title="Τα έργα μας">
-  <Work />
+  <Work projects={projects} />
 </MainLayout>

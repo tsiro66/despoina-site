@@ -1,11 +1,20 @@
 // @ts-check
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
+import react from '@astrojs/react';
+import keystatic from '@keystatic/astro';
+import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
+    output: 'static',
+    adapter: node({ mode: 'standalone' }),
+    integrations: [react(), keystatic()],
     vite: {
-        plugins: [ tailwindcss()]
+        plugins: [ tailwindcss()],
+        optimizeDeps: {
+            exclude: ['@keystatic/astro'],
+        },
     },
     fonts: [
         {

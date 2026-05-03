@@ -1,0 +1,49 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/projects/**/*.{jpg,jpeg,png,gif,webp,avif}",
+  { eager: true },
+);
+const img = images[project.data.image];
+---
+
+<MainLayout title={project.data.title}>
+  <article class="min-h-screen text-black px-8 md:px-16 lg:px-24 py-20">
+    <div class="max-w-4xl mx-auto">
+      <a
+        href="/work"
+        class="text-forest/70 hover:text-forest text-sm font-google-sans mb-8 inline-flex items-center gap-1 transition-colors"
+      >
+        &larr; Πίσω στα έργα
+      </a>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-6 mb-8">
+        {project.data.title}
+      </h1>
+      <div class="aspect-[16/9] overflow-hidden bg-zinc-100 mb-12">
+        {img && (
+          <Image
+            src={img.default}
+            alt={project.data.title}
+            class="w-full h-full object-cover"
+          />
+        )}
+      </div>
+      <p class="text-lg text-black/80 font-google-sans leading-relaxed max-w-3xl">
+        {project.data.description}
+      </p>
+    </div>
+  </article>
+</MainLayout>
