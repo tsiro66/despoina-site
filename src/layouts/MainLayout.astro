@@ -1,0 +1,44 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { Font } from 'astro:assets';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Professional Site",
+  description = "A high-performance website built with Astro"
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-syne" />
+    <Font cssVariable="--font-geom" />
+    <Font cssVariable="--font-google-sans" />
+    <Font cssVariable="--font-sansation" />
+    <Font cssVariable="--font-inter" />
+    <ClientRouter />
+    <title>{`A37 | ${title}`}</title>
+
+  </head>
+  <body class="bg-zinc-50 font-geom">
+    <Navbar />
+
+    <main id="main-content" class="relative z-10 bg-zinc-50 min-h-[calc(100vh-64px)]">
+      <slot /> </main>
+
+    <Footer />
+  </body>
+</html>

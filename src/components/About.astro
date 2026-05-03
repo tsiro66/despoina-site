@@ -1,0 +1,110 @@
+---
+const team = [
+  {
+    name: "Όνομα Επώνυμο",
+    role: "Πολιτικός Μηχανικός",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore doloremque nemo reprehenderit.",
+    color: "bg-gray-400",
+    span: "lg:col-span-3",
+  },
+  {
+    name: "Όνομα Επώνυμο",
+    role: "Αρχιτέκτονας",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore doloremque nemo reprehenderit.",
+    color: "bg-blue-500",
+    span: "lg:col-span-2",
+  },
+  {
+    name: "Όνομα Επώνυμο",
+    role: "Αρχιτέκτονας",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore doloremque nemo reprehenderit.",
+    color: "bg-pink-400",
+    span: "lg:col-span-2",
+  },
+  {
+    name: "Όνομα Επώνυμο",
+    role: "Αρχιτέκτονας",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore doloremque nemo reprehenderit.",
+    color: "bg-orange-500",
+    span: "lg:col-span-3",
+  },
+  {
+    name: "Όνομα Επώνυμο",
+    role: "Αρχιτέκτονας",
+    bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore doloremque nemo reprehenderit.",
+    color: "bg-green-800",
+    span: "lg:col-span-5",
+  },
+];
+---
+
+<section class="px-8 md:px-16 lg:px-24 py-16 sm:py-24">
+
+  <!-- Header — mirrors hero grid structure -->
+  <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-12 sm:mb-16">
+    <div class="about-card lg:col-span-2 flex flex-col justify-center">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight">Ποιοι είμαστε</h1>
+      <p class="mt-4 text-gray-600 font-google-sans text-base sm:text-lg leading-relaxed">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore doloremque nemo reprehenderit quos harum sapiente.
+      </p>
+    </div>
+    <div class="about-card lg:col-span-3 border border-forest/40 p-6 sm:p-8 flex items-center corner-extend">
+      <p class="text-forest/80 font-google-sans text-base sm:text-lg leading-relaxed">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam, itaque est eum maxime explicabo quos harum sapiente culpa autem voluptatem accusamus doloremque.
+      </p>
+    </div>
+  </div>
+
+  <!-- Team grid — asymmetric like hero cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+    {team.map((member) => (
+      <div class={`about-card bg-zinc-50 border border-forest/40 corner-extend ${member.span}`}>
+        <div class="p-5 sm:p-6 lg:p-8">
+          <div class={`w-11 h-11 ${member.color} mb-4`}></div>
+          <h3 class="text-lg sm:text-xl font-bold text-black">{member.name}</h3>
+          <span class="text-sm text-black/60 font-google-sans mt-1 block">{member.role}</span>
+          <p class="mt-3 text-gray-600 text-sm font-google-sans leading-relaxed">{member.bio}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+</section>
+
+<style>
+  .about-card {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .about-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-card {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const cards = document.querySelectorAll(".about-card");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add("visible"), i * 100);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    cards.forEach((card) => observer.observe(card));
+  });
+</script>

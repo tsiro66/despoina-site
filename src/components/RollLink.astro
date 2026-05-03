@@ -1,0 +1,56 @@
+---
+interface Props {
+  href: string;
+  text: string;
+  class?: string;
+  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | 'true' | 'false';
+}
+
+const { href, text, class: className, 'aria-current': ariaCurrent } = Astro.props;
+---
+
+<a href={href} class:list={["roll-link", className]} aria-label={text} {...(ariaCurrent ? { 'aria-current': ariaCurrent } : {})}>
+  <span class="roll-text">
+    <span>{text}</span>
+    <span aria-hidden="true">{text}</span>
+  </span>
+  <slot />
+</a>
+
+<style is:global>
+  .roll-link {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .roll-text {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .roll-text span {
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .roll-text span:last-child {
+    position: absolute;
+    top: 140%;
+    left: 0;
+  }
+
+  .roll-link:hover .roll-text span {
+    transform: translateY(-140%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .roll-text span {
+      transition: none;
+    }
+    .roll-link:hover .roll-text span {
+      transform: none;
+    }
+  }
+</style>
+
