@@ -18,11 +18,6 @@ export default defineConfig({
     },
     fonts: [
         {
-            name: "Syne",
-            cssVariable: "--font-syne",
-            provider: fontProviders.google(),
-        },
-        {
             name: "Geom",
             cssVariable: "--font-geom",
             provider: fontProviders.google(),
@@ -39,10 +34,10 @@ export default defineConfig({
             provider: fontProviders.google(),
         },
         {
-            name: "Inter",
-            cssVariable: "--font-inter",
+            name: "Fraunces",
+            cssVariable: "--font-fraunces",
             provider: fontProviders.google(),
-            subsets: ["greek", "latin"],
+            subsets: ["latin"],
         },
     ],
 });

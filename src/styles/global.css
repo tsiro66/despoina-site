@@ -5,10 +5,6 @@
     --nav-logo-w: 5rem;
 }
 
-@utility font-syne {
-    font-family: var(--font-syne);
-}
-
 @utility font-geom {
     font-family: var(--font-geom);
 }
@@ -21,8 +17,8 @@
     font-family: var(--font-sansation);
 }
 
-@utility font-inter {
-    font-family: var(--font-inter);
+@utility font-fraunces {
+    font-family: var(--font-fraunces);
 }
 
 /* Vertical sidebar line — desktop only */
@@ -144,9 +140,9 @@
 .nav-active::after {
     content: '';
     position: absolute;
-    left: -3.5px;
-    right: -3.5px;
-    bottom: -3.5px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
     height: 7px;
     pointer-events: none;
     background-image:

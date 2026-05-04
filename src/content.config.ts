@@ -8,6 +8,9 @@ const projects = defineCollection({
     title: z.string(),
     image: z.string(),
     description: z.string(),
+    dateStart: z.string(),
+    dateEnd: z.string().optional().nullable(),
+    order: z.number().int(),
   }),
 });
 

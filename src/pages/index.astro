@@ -5,7 +5,9 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import bgImg from "../assets/bg-img.jpg";
 
-const allProjects = await getCollection("projects");
+const allProjects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order
+);
 const latestProjects = allProjects.slice(0, 4);
 
 const images = import.meta.glob<{ default: ImageMetadata }>(

@@ -41,6 +41,14 @@ const img = images[project.data.image];
           />
         )}
       </div>
+      {(project.data.dateStart) && (
+        <p class="text-sm text-black/50 font-google-sans mb-6">
+          {new Date(project.data.dateStart).toLocaleDateString('el-GR', { month: 'long', year: 'numeric' })}
+          {project.data.dateEnd
+            ? ` – ${new Date(project.data.dateEnd).toLocaleDateString('el-GR', { month: 'long', year: 'numeric' })}`
+            : ' – Παρόν'}
+        </p>
+      )}
       <p class="text-lg text-black/80 font-google-sans leading-relaxed max-w-3xl">
         {project.data.description}
       </p>
