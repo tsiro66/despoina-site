@@ -14,9 +14,7 @@ collections:
     create: true
     format: json
     extension: json
-    nested:
-      depth: 1
-    meta: { path: { widget: string, label: Path, index_file: index } }
+    path: "{{slug}}/index"
     fields:
       - { label: Title, name: title, widget: string, required: true }
       - { label: Photo, name: image, widget: image, required: true }
