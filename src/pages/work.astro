@@ -1,7 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import Work from "../components/Work.astro";
 import { getCollection } from "astro:content";
+import WorkSection from "../components/WorkSection.astro";
 
 const projects = (await getCollection("projects")).sort(
   (a, b) => a.data.order - b.data.order
@@ -9,5 +9,5 @@ const projects = (await getCollection("projects")).sort(
 ---
 
 <MainLayout title="Τα έργα μας">
-  <Work projects={projects} />
+  <WorkSection projects={projects} />
 </MainLayout>
